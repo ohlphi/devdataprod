@@ -1,0 +1,49 @@
+---
+title       : The storm app
+subtitle    : An app showing the financial and human impact of weather events in the USA
+author      : Philip Ohlsson
+job         : Anayst
+framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
+highlighter : highlight.js  # {highlight.js, prettify, highlight}
+hitheme     : tomorrow      # 
+widgets     : []            # {mathjax, quiz, bootstrap}
+mode        : selfcontained # {standalone, draft}
+knit        : slidify::knit2slides
+---
+
+## The Storm App
+
+The Storm App lets you check the financial and human impact weather events have had on states in the United States between 1950 to 2011.
+
+Simply choose whether you wish to check the financial impact of weather events by selecting: 
+
+- Property Damage
+- Crop Damage or
+- Property and Crop Damage combined
+
+Or choose the human impact of weather events by selecting: 
+
+- Fatalities
+- Injuries or
+- Fatalities and Injuries combined
+
+--- .class #id
+
+
+## Slide 2
+
+Why is it not working?
+
+
+```{r nvd3plot, results = 'asis', comment = NA, message = F, echo = F}
+require(rCharts)
+storm <- read.csv("finalstorm.csv", header=TRUE, sep=",")
+storm <- subset(storm, variable=="Injuries")
+n1 <- nPlot(value ~ Year, data = storm, group = 'State', type = 'lineChart')
+n1$show('inline')
+```
+
+
+---
+
+
