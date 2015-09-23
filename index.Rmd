@@ -2,7 +2,7 @@
 title       : The storm app
 subtitle    : An app showing the financial and human impact of weather events in the USA
 author      : Philip Ohlsson
-job         : Anayst
+job         : 
 framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
 highlighter : highlight.js  # {highlight.js, prettify, highlight}
 hitheme     : tomorrow      # 
@@ -13,7 +13,7 @@ knit        : slidify::knit2slides
 
 ## The Storm App
 
-The Storm App lets you check the financial and human impact weather events have had on states in the United States between 1950 to 2011.
+The Storm App lets you check the financial and human impact weather events have had on the United States between 1950 to 2011.
 
 Simply choose whether you wish to check the financial impact of weather events by selecting: 
 
@@ -30,20 +30,38 @@ Or choose the human impact of weather events by selecting:
 --- .class #id
 
 
-## Slide 2
 
-Why is it not working?
+## Visualize it!
 
+For instance, you can check visually how the impact of Crop&Property Damage differs between state and year:
 
-```{r nvd3plot, results = 'asis', comment = NA, message = F, echo = F}
+ ```{r nvd3plot, results = 'asis', comment = NA, message = F, echo = F}
 require(rCharts)
-storm <- read.csv("finalstorm.csv", header=TRUE, sep=",")
-storm <- subset(storm, variable=="Injuries")
-n1 <- nPlot(value ~ Year, data = storm, group = 'State', type = 'lineChart')
-n1$show('inline')
+require(rMaps)
+options(stringsAsFactors = FALSE)
+storm <- read.csv("finalstorm.csv", header = TRUE, sep =",")
+storm <- subset(storm, variable == "Crop.Property")
+ichoropleth(value~State, data = storm, animate = "Year", pal="PuRd")
 ```
 
 
 ---
 
 
+## Download it!
+
+In case you enjoyed watching the visualization and wish to download the data, you can do that. 
+
+In case you are only interested in checking out a specific state, a specific year, or only the human impact of weather events, you can do that too! Simply select your preferences, click the  download button and the data will be downloaded into a csv file.
+
+---
+
+## More info
+
+- For more info on the code of the app, click here: 
+https://github.com/ohlphi/weather
+
+- For checking out the app, click here:
+https://ohlphi.shinyapps.io/weather
+
+---
